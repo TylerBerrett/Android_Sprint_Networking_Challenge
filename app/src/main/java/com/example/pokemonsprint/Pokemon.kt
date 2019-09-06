@@ -1,15 +1,17 @@
 package com.example.pokemonsprint
 
+import java.io.Serializable
+
 data class Sprites (
     val front_default: String
 )
 
-data class ablity(
+data class ability(
     val name: String
 )
 
 data class ablityList(
-    val ablity: ablity
+    val ability: ability
 )
 
 data class type(
@@ -28,3 +30,11 @@ data class Pokemon (
     val abilities: List<ablityList>,
     val types: List<typeList>
 )
+
+data class PassPokemon(
+    var name: String,
+    var sprites: String,
+    var id: Int,
+    var ability: ArrayList<String>,
+    var type: ArrayList<String>
+): Serializable
