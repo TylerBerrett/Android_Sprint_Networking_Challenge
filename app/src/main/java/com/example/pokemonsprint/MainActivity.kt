@@ -5,17 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), Callback<Pokemon> {
     companion object{
         var PokemonNameNumber = ""
         val POKEMON_INTENT_KEY = "treecko"
+        val POKEMON_EDIT = "nice"
     }
 
     override fun onFailure(call: Call<Pokemon>, t: Throwable) {
@@ -44,9 +45,6 @@ class MainActivity : AppCompatActivity(), Callback<Pokemon> {
             val intent = Intent(this, PokemonAbout::class.java)
             intent.putExtra(POKEMON_INTENT_KEY, passPokemon)
             startActivity(intent)
-
-
-            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
         } else {
             print(response)
             Toast.makeText(this, "Please enter a valid id or name", Toast.LENGTH_LONG).show()
@@ -58,6 +56,9 @@ class MainActivity : AppCompatActivity(), Callback<Pokemon> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.adapter = PokemonRecycler(PokemonAbout.pokemonList)
 
 
         search_bar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
