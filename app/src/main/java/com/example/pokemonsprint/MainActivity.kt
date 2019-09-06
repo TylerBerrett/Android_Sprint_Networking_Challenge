@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), Callback<Pokemon> {
             Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
         } else {
             print(response)
-            Toast.makeText(this, "Almost there", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Please enter a valid id or name", Toast.LENGTH_LONG).show()
         }
     }
 
